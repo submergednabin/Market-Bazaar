@@ -1,0 +1,9 @@
+.errors{
+    color: red;
+}
+.box-error{
+    border-color: red;
+}
+.success-msg{
+    color:green;
+}

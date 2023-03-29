@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row align-items-center row-form">
+    <div class="header">
+      <h1>Market Bazaar</h1>
+    </div>
+    <div class="mx-auto col-sm-6 mt-4 login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div *ngIf="error.trim().length>0" class="errors ">
+            <p>{{error}}</p>
+        </div>
+        <div class="form-group row mt-3">
+          <label for="username" class="col-sm-2 col-form-label">Username</label>
+          <div class="col-sm-8">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="username"
+            />
+            <div *ngIf="loginForm.controls['username'].errors" class="errors">
+              <div
+                *ngIf="loginForm.controls['username'].touched && 
+                                loginForm.controls['username'].errors?.['required']
+                                "
+              >
+                <p>Username is required !!!</p>
+              </div>
+              <div class="errors" *ngIf="loginForm.controls['username'].errors?.['minlength']">
+                    <p>Minimum length of 4 is required</p>
+              </div>
+              <div class="errors" *ngIf="loginForm.controls['username'].errors?.['maxlength']">
+                <p>Length cannot exceed 15 characters.</p>
+          </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mt-3">
+          <label for="Password" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-8">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+            />
+            <div *ngIf="loginForm.controls['password'].errors">
+                <div class="errors" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
+                    <p>Password is required</p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-8 mt-3 button">
+          <button
+            class="btn btn-primary form-control"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          >
+            Login
+          </button>
+        </div>
+
+      </form>
+      <div class="signup col-sm-10">
+        <div>New to Market Bazaar?</div>
+        <a
+          class="d-inline-block"
+          [routerLink]="['/admin/signup']"
+          routerLinkActive="router-link-active"
+          >Please Register</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

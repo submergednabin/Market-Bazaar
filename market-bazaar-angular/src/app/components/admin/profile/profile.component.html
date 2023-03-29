@@ -1,0 +1,106 @@
+<app-search-panel></app-search-panel>
+<app-navigation></app-navigation>
+<div class="container bg-light bg-gradient">
+  <div class="col-sm-12 mt-3">
+    <form
+      [formGroup]="profileForm"
+      *ngIf="users"
+      class="pb-2 row gx-3 gy-2 align-items-center"
+      [formGroup]="profileForm"
+      (ngSubmit)="submitProfile()"
+      novalidate
+    >
+      <!-- <div class="form-row"> -->
+    <div class="success-msg" *ngIf="successMsg.length>0">
+        <p>{{successMsg}}</p>
+    </div>
+    <div class="errors" *ngIf="errorMsg.length>0">
+        <p>{{errorMsg}}</p>
+    </div>
+      <div class="col-md-6 form-group">
+        <label>Firstname</label>
+        <input
+          type="text"
+          class="form-control"
+          value="{{ users.userDetails.firstname }}"
+          [ngClass]="profileForm.controls['firstname'].touched && profileForm.controls['firstname'].errors?.['required']?'box-error':''"
+          formControlName="firstname"
+        />
+        <!-- <div class="errors" *ngIf="profileForm.controls['firstname'].errors">
+          <div *ngIf="profileForm.controls['firstname'].touched">
+            <div *ngIf="profileForm.controls['firstname'].errors?.['required']">
+              <p>Firstname is required</p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label>Middlename</label>
+        <input type="text" class="form-control" formControlName="middlename" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Lastname</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="profileForm.controls['lastname'].touched && profileForm.controls['lastname'].errors?.['required']?'box-error':''"
+          formControlName="lastname"
+        />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Email</label>
+        <input
+          value="{{ users.userDetails.email }}"
+          type="email"
+          class="form-control"
+          [ngClass]="profileForm.controls['email'].touched && profileForm.controls['email'].errors?.['required']?'box-error':''"
+          formControlName="email"
+        />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Street Address</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="profileForm.controls['street_address'].touched && profileForm.controls['street_address'].errors?.['required']?'box-error':''"
+          formControlName="street_address"
+        />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>City</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="profileForm.controls['city'].touched && profileForm.controls['city'].errors?.['required']?'box-error':''"
+          formControlName="city"
+        />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>State</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="profileForm.controls['state'].touched && profileForm.controls['state'].errors?.['required']?'box-error':''"
+          formControlName="state"
+        />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Country</label>
+        <input type="text" class="form-control" 
+        [ngClass]="profileForm.controls['country'].touched && profileForm.controls['country'].errors?.['required']?'box-error':''"
+        formControlName="country" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Zip Code</label>
+        <input type="number" class="form-control"
+        [ngClass]="profileForm.controls['zip'].touched && profileForm.controls['zip'].errors?.['required']?'box-error':''"
+        formControlName="zip" />
+      </div>
+      <div class="col-md-12 form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
+      </div>
+      <!-- </div> -->
+    </form>
+  </div>
+</div>

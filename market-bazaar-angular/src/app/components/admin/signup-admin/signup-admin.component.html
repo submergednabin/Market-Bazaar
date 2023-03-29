@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row justify-content-center custom-form-signup">
+    <div class="col-sm-3 mt-4 header">
+      <h1>Market Bazaar</h1>
+    </div>
+  </div>
+  <!-- col-xs-6 col-md-8  -->
+  <div class="signup-form-box">
+    <div class="row d-flex justify-content-center">
+      <form
+        class="border col-xs-5 col-md-4 col-sm-4"
+        [formGroup]="signupAdminForm"
+        novalidate
+        (ngSubmit)="signupForm()"
+      >
+        <div class="form-group">
+          <label class="col-form-label text-center">Username </label>
+          <input class="form-control" type="text" formControlName="username" />
+          <div
+            class="errors"
+            *ngIf="signupAdminForm.controls['username'].errors"
+          >
+            <div
+              *ngIf="
+                signupAdminForm.controls['username'].touched
+                &&
+                signupAdminForm.controls['username'].errors?.['required']"
+            >
+              <p>Username is required !!</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">Email</label>
+          <input class="form-control" type="email" formControlName="email" />
+          <div class="errors" *ngIf="signupAdminForm.controls['email'].errors">
+            <div *ngIf="signupAdminForm.controls['email'].touched">
+              <div
+                *ngIf="signupAdminForm.controls['email'].errors?.['required']"
+              >
+                <p>Email is required !!</p>
+              </div>
+              <div *ngIf="signupAdminForm.controls['email'].errors?.['email']">
+                <p>Incorrect email format !!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">Password</label>
+          <input
+            class="form-control"
+            type="password"
+            formControlName="password"
+          />
+          <div
+            class="errors"
+            *ngIf="signupAdminForm.controls['password'].errors"
+          >
+            <div *ngIf="signupAdminForm.controls['password'].touched">
+              <div
+                *ngIf="signupAdminForm.controls['password'].errors?.['required']"
+              >
+                <p>Password is required !!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">Retype Password</label>
+          <input
+            class="form-control"
+            type="password"
+            formControlName="reTypePassword"
+          />
+          <div *ngIf="signupAdminForm.controls['reTypePassword'].errors">
+            <div *ngIf="signupAdminForm.controls['reTypePassword'].touched">
+              <div
+                class="errors"
+                *ngIf="signupAdminForm.controls['reTypePassword'].errors?.['required']"
+              >
+                <p>This field is required !!</p>
+              </div>
+              <div
+                class="errors"
+                *ngIf="signupAdminForm.controls['reTypePassword'].errors?.['customValidators']"
+              >
+                <p>Password donot match !!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-2 d-grid gap-2">
+          <button class="btn btn-primary" [disabled]="signupAdminForm.invalid">
+            Signup
+          </button>
+        </div>
+        <div class="mt-2 text-center mb-2">
+          <p class="d-inline ml-2 p-2">Already a Member?</p>
+          <a class="d-inline p-2 login-link" [routerLink]="['admin/login']"
+            >Login</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

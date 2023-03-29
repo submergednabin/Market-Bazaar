@@ -1,0 +1,27 @@
+
+.header{
+    color: #6d3535;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.errors{
+    color: red;
+}
+.button{
+    margin-left: 17%;
+}
+.button:hover {
+    cursor: pointer;
+}
+a.login-link{
+    text-decoration: none ;
+}
+a.login-link:hover{
+    text-decoration: underline ;
+}
+
+.signup-form-box{
+    margin: 0 !important;
+}
+.row .custom-form-signup{
+    margin-bottom: 0 !important;
+}
