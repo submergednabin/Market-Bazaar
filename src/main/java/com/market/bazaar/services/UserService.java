@@ -36,7 +36,7 @@ public class UserService {
 	public void addUser(User user) {
 
 		UserDetails ud = user.getUserDetails();
-		System.out.println(ud);
+		
 		UserRole ur = user.getUserRole();
 		userDetailDao.save(ud);
 		userDAO.save(user);

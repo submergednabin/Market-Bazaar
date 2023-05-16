@@ -28,13 +28,18 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<List<User>> getAllUserList() throws Exception{
 		List<User> users = userService.getAllUsers();
-//		if(users.isEmpty()) {
-//			throw new NullPointerException("Empty");
-//			
-//		}
 		
 		return ResponseEntity.status(200).body(users);
 		
+	}
+	
+	@GetMapping("user-detail/{id}")
+	public ResponseEntity<User> findUserDetails(@PathVariable int id){
+		User u = userService.findUserById(id);
+		if(u != null) {
+			return ResponseEntity.status(200).body(u);
+		}
+		return null;
 	}
 	
 	@PostMapping
@@ -58,6 +63,7 @@ public class UserController {
 //		System.out.println(id);
 		if(userService.findUserById(id)!= null) {
 			userService.updateUserDetails(user);
+			return ResponseEntity.status(200).body("Successfully Updated");
 		}
 		
 		return null;

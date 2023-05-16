@@ -1,0 +1,188 @@
+<app-search-panel></app-search-panel>
+<app-navigation></app-navigation>
+<div class="container-fluid">
+  <div class="row col-md-12 col-sm-12 col-lg-12 mt-3">
+    <div class="col-sm-1 col-md-1 col-lg-2 vertical-menu bg-light bg-gradient">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <app-side-menu-bar
+            label="Products"
+            activeLink="active"
+            routerParameter="/admin/products"
+          ></app-side-menu-bar>
+            <ul>
+              <app-side-menu-bar
+              label="All Products"
+              activeLink="active"
+              routerParameter=""
+            ></app-side-menu-bar>
+            </ul>
+        </li>
+        <li class="nav-item">
+          <app-side-menu-bar
+            label="Category"
+            activeLink="active"
+            routerParameter="#"
+          ></app-side-menu-bar>
+          <ul>
+            <app-side-menu-bar
+            label="Add Category"
+            activeLink="active"
+            routerParameter="/admin/products/category/add"
+          ></app-side-menu-bar>
+          </ul>
+        </li>
+       
+      </ul>
+    </div>
+    <!-- 
+      enctype="multipart/form-data"
+
+     -->
+    <div class="col-sm-10 col-md-10 col-lg-9 bg-light bg-gradient">
+      <form
+        class="pb-2 row gx-3 gy-2 align-items-center"
+        [formGroup]="formGroup"
+        (ngSubmit)="onRegister(formGroup)"
+        novalidate
+      >
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.productName"
+            type="text"
+            inputId="productName"
+            label="Product Name"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.brandName"
+            type="text"
+            inputId="brandName"
+            label="Brand Name"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.size"
+            type="text"
+            inputId="size"
+            label="Size"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.amount"
+            type="number"
+            inputId="amount"
+            label="Amount"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.quantity"
+            inputId="quantity"
+            label="Quantity"
+            type="number"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.manufacturedDate"
+            inputId="manufacturedDate"
+            label="Manufactured Date"
+            type="date"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="formGroup.controls.expiryDate"
+            inputId="expiryDate"
+            label="Expiry Date"
+            type="date"
+          ></app-reuseable-form>
+        </div>
+
+        <!-- 
+        (change)="triggerMe($event)"
+          acceptData="image/png, image/gif, image/jpeg"
+       -->
+        <!-- [multipleFile]=true -->
+
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            (change)="triggerMe($event)"
+            [control]="formGroup.controls.image"
+            inputId="image"
+            label="Image"
+            type="file"
+            acceptData="image/png, image/gif, image/jpeg"
+          ></app-reuseable-form>
+          <!-- <span *ngIf="mimeError===true">
+            <p>{{mimeMsg}}</p>
+        </span> -->
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Category</label>
+          <select
+            *ngIf="categoryLists.length > 0"
+            class="form-select"
+            [class.invalid]="
+              formGroup.controls['description'].errors &&
+              formGroup.controls['description'].touched
+            "
+            formControlName="category"
+          >
+            <option [defaultSelected] disabled>Select Category</option>
+            <option
+              *ngFor="let category of categoryLists"
+              value="{{ category.id }}"
+            >
+              {{ category.categoryName }}
+            </option>
+          </select>
+          <div
+            class="errors"
+            *ngIf="
+              formGroup.controls['category'].errors &&
+              formGroup.controls['category'].touched
+            "
+          >
+            <p>This field is required</p>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Description</label>
+          <textarea
+            formControlName="description"
+            class="form-control"
+            [class.invalid]="
+              formGroup.controls['description'].errors &&
+              formGroup.controls['description'].touched
+            "
+          >
+          </textarea>
+          <div
+            class="errors"
+            *ngIf="
+              formGroup.controls['description'].errors &&
+              formGroup.controls['description'].touched
+            "
+          >
+            <p>This field is required</p>
+          </div>
+        </div>
+
+        <div class="col-md-12 form-group mt-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="formGroup.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

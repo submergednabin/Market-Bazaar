@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { User } from 'src/app/model/user.model';
 import { RegisterService } from '../signup-admin/register.service';
 
@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private service: RegisterService
+    private service: RegisterService,
+    private router:Router
   ) {
     // this.route.snapshot.paramMap.get('id')
     this.route.paramMap.subscribe((params) => {
@@ -74,6 +75,8 @@ export class ProfileComponent implements OnInit {
         setTimeout(() => {
           this.successMsg=""
         }, 4000);
+    
+        this.router.navigate(['admin/products'], )
         
       },
       error: (err) => (this.errorMsg = err),

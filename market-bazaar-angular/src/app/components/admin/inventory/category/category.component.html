@@ -1,0 +1,65 @@
+<app-search-panel></app-search-panel>
+<app-navigation></app-navigation>
+<div class="container-fluid">
+  <div class="row col-md-12 col-sm-12 col-lg-12 mt-3">
+    <div class="col-sm-1 col-md-1 col-lg-2 vertical-menu bg-light bg-gradient">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <app-side-menu-bar
+            label="Products"
+            activeLink="active"
+            routerParameter="/admin/products"
+          ></app-side-menu-bar>
+          <ul>
+            <app-side-menu-bar
+              label="All Products"
+              activeLink="active"
+              routerParameter=""
+            ></app-side-menu-bar>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <app-side-menu-bar
+            label="Category"
+            activeLink="active"
+            routerParameter="/admin/products"
+          ></app-side-menu-bar>
+          <ul>
+            <app-side-menu-bar
+              label="Add Category"
+              activeLink="active"
+              routerParameter="/admin/products/category/add"
+            ></app-side-menu-bar>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-10 col-md-10 col-lg-9 bg-light bg-gradient">
+      <form
+        class="pb-2 row gx-3 gy-2 align-items-center"
+        [formGroup]="catFormGroup"
+        (ngSubmit)="saveCategory(catFormGroup)"
+        novalidate
+      >
+        <div class="col-md-6 form-group">
+          <app-reuseable-form
+            [control]="catFormGroup.controls.categoryName"
+            type="text"
+            inputId="categoryName"
+            label="Category Name"
+          ></app-reuseable-form>
+        </div>
+        <div class="col-md-12 form-group mt-2">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="catFormGroup.invalid"
+            >
+              Submit
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

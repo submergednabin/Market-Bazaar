@@ -1,0 +1,18 @@
+.invalid{
+    border-color: red;
+}
+.errors{
+    color: red;
+}
+.active2{
+    text-decoration: underline;
+}
+.vertical-menu{
+    border: 1px solid rgb(229, 231, 234);
+    margin-left: 2%;
+}
+
+textarea{
+    min-height: 120px;
+    max-height: 300px;
+}
